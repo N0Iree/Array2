@@ -21,16 +21,34 @@ public class BioskopWithScanner01 {
                     while (true) {
                         System.out.print("Masukan nama: ");
                         nama = sc.nextLine();
-                        System.out.print("Masukan baris: ");
-                        baris = sc.nextInt();
-                        System.out.print("Masukan kolom: ");
-                        kolom = sc.nextInt();
-                        sc.nextLine();
+                        while (true) {
+                            do {
+                                System.out.print("Masukan baris: ");
+                                baris = sc.nextInt();
+                                if (baris < 1 || baris > 4) {
+                                    System.out.println("Baris tidak tersedia! Pilih 1-4.");
+                                }
+                            } while (baris < 1 || baris > 4);
 
-                        penonton[baris - 1][kolom - 1] = nama;
+                            do {
+                                System.out.print("Masukan kolom: ");
+                                kolom = sc.nextInt();
+                                if (kolom < 1 || kolom > 2) {
+                                    System.out.println("Kolom tidak tersedia! Pilih 1-2.");
+                                }
+                            } while (kolom < 1 || kolom > 2);
+                            sc.nextLine();
+
+                            if (penonton[baris - 1][kolom - 1] != null) {
+                                System.out.println(
+                                        "Kursi terisi oleh " + penonton[baris - 1][kolom - 1] + ", pilih kursi lain");
+                            } else {
+                                penonton[baris - 1][kolom - 1] = nama;
+                                break;
+                            }
+                        }
                         System.out.print("Input penonton lainnya? (y/n): ");
                         pilihan = sc.nextLine();
-
                         if (pilihan.equalsIgnoreCase("n")) {
                             break;
                         }
